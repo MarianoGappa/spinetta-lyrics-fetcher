@@ -1,3 +1,5 @@
+<?php
+
 /************************************************************************************************
 This file is part of spinetta-lyrics-fetcher.
  
@@ -13,10 +15,10 @@ GNU General Public License for more details.
  
 You should have received a copy of the GNU General Public License
 along with spinetta-lyrics-fetcher.  If not, see <http://www.gnu.org/licenses/>.
-eral Public License along with spinetta-lyrics-fetcher. If not, see http://www.gnu.org/licenses/.
+
+@author Mariano Gappa <spinetta@gmail.com>
 ************************************************************************************************/
 
-<?php
 date_default_timezone_set("Pacific/Auckland");
 
 $artists = array(
@@ -31,8 +33,8 @@ $artists = array(
 foreach($artists as $artist)
     getAllAlbumsFormArtist($artist);
 
-function getAllAlbumsFormArtist() {
-    $html = file_get_contents("http://www.rock.com.ar/artistas/luis-alberto-spinetta");
+function getAllAlbumsFormArtist($artist) {
+    $html = file_get_contents($artist);
     preg_match_all("#<a href=\"(/discos/[\d]+/[\d]+\.shtml)#", $html, $matches, PREG_SET_ORDER);
     foreach($matches as $match) {
         getAllSongsFromAlbum($match[1]);
