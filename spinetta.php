@@ -58,5 +58,13 @@ function file_get_contents_utf8($fn) {
 function getSong($url) {
     $html = file_get_contents_utf8("http://www.rock.com.ar" . $url);
     preg_match("#blanco\.gif.+<div class=\"nota\">(.*?)</div>#s", $html, $matches);
-    echo str_replace("<br>", "", $matches[1]);
+    $content = str_replace("<br>", "", $matches[1]);
+    preg_match("#<div class=\"nota2\">(.+?)</div>#s", $html, $matches);
+    $title = $matches[1];
+    //persistSong($title, $content);
+}
+
+function persistSong($title, $content) {
+    $folder = "songs/";
+    file_put_contents($folder . preg_replace('/[^A-Za-z0-9_\-]/', '_', $title) . ".txt", $content);
 }
