@@ -1,7 +1,5 @@
 Simply execute the php script to retrieve all of Spinetta's lyrics (from Rock.com.ar).
 The script will execute many GET requests (200 > x > 300) to the Rock.com.ar website.
-Known bugs: there is an encoding problem; accents and ñ are replaced by question marks.
-
 
 
 This file is part of spinetta-lyrics-fetcher.
