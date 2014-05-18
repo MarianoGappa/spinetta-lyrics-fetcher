@@ -49,8 +49,14 @@ function getAllSongsFromAlbum($url) {
     }
 }
 
+function file_get_contents_utf8($fn) { 
+     $content = file_get_contents($fn); 
+      return mb_convert_encoding($content, 'UTF-8', 
+          mb_detect_encoding($content, 'UTF-8, ISO-8859-1', true)); 
+}
+
 function getSong($url) {
-    $html = file_get_contents("http://www.rock.com.ar" . $url);
+    $html = file_get_contents_utf8("http://www.rock.com.ar" . $url);
     preg_match("#blanco\.gif.+<div class=\"nota\">(.*?)</div>#s", $html, $matches);
     echo str_replace("<br>", "", $matches[1]);
 }
